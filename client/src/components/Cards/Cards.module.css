@@ -1,0 +1,23 @@
+.container{
+    background-color: gainsboro;
+    margin: 5px;
+    padding: 10px;
+    width: 370px;
+    height: 550px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text{
+    margin: 2,5%;
+    text-decoration: none;
+    font-size: 140%;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+}

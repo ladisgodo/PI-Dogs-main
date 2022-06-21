@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getDogs } from '../../redux/actions'
 import Cards from "../Cards/Cards";
+import s from './Home.module.css';
 
 export default function Home() {
 
@@ -15,7 +16,7 @@ export default function Home() {
     },[dispatch]);
 
     return (
-        <div>
+        <div className={s.container} >
             {
                 dogs.length>0 ? (
                         dogs.map((d) =>{
@@ -23,10 +24,11 @@ export default function Home() {
                                 <div>
                                     <Cards
                                     name={d.name}
-                                    img={d.img}
+                                    img={d.image}
                                     weightMin={d.weightMin}
                                     weightMax={d.weightMax}
-                                    temperaments={d.temperaments}
+                                    temperament={d.temperament}
+                                    className={s.cards}
                                     />
                                 </div>
                             )
