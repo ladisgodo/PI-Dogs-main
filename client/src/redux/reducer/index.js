@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_TEMPERAMENTS, GET_DETAILS } from "./constants";
+import { GET_DOGS, GET_TEMPERAMENTS, GET_DETAILS } from "../actions/constants";
 
 const initialState = {
     dogs: [],
