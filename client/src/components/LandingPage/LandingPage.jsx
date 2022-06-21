@@ -6,8 +6,8 @@ export default function LandingPage() {
 
     return(
         <div>
+            <h1>Estoy en la LandingPage</h1>
             <Link to='/home'>
-                <h1>Estoy en la LandingPage</h1>
                 <button>Entrar a home</button>
             </Link>
         </div>
