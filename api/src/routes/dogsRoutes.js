@@ -2,7 +2,6 @@ const { Router } = require('express');
 const { Dog, Temperament } = require("../db");
 const { API_KEY } = process.env;
 const axios = require('axios');
-const { UnknownConstraintError } = require('sequelize/types');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -15,17 +14,17 @@ const router = Router();
 
 const getApiInfo = async () => {
     try{
-        const url = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-        const apiInfo = await url.data.map((e) =>{
+        const listadoApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
+        const apiInfo = await listadoApi.data.map((e) =>{
             return{
-                id: e.id,
                 name: e.name,
-                weightMin: e.weight.metric.split(" - ")[0],
-                weightMax: e.weight.metric.split(" - ")[1],
-                heightMin: e.height.metric.split(" - ")[0],
-                heightMax: e.height.metric.split(" - ")[1],
-                lifespanMin: e.life_span.split(" - ")[0],
-                lifespanMax: e.life_span.split(" - ")[1].split(" ")[0],
+                id: e.id,
+                weightMin: e.weight.metric.split(" - ")[0] && e.weight.metric.split(" - ")[0],
+                weightMax: e.weight.metric.split(" - ")[1] && e.weight.metric.split(" - ")[1],
+                heightMin: e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],
+                heightMax: e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
+                lifespanMin: e.life_span.split(" - ")[0] && e.life_span.split(" - ")[0],
+                lifespanMax: e.life_span.split(" - ")[1] && e.life_span.split(" - ")[1].split(" ")[0],
                 temperament: e.temperament ? e.temperament : "Unknown",
                 image: e.image.url,
             };
@@ -66,14 +65,14 @@ const getDataBaseInfo = async () => {
 
 const getAll = async () => {
     try{
-        const api = getApiInfo();
-        const db = getDataBaseInfo();
-        const result = [...api, ...db];
+        const api = await getApiInfo();
+        const db = await getDataBaseInfo();
+        const result = api.concat(db);
         return result;
     } catch(e){
         console.log("Error en getAll", e);
     };
-}
+};
 
 /* 
 GET /dogs:
@@ -82,11 +81,73 @@ Debe devolver solo los datos necesarios para la ruta principal
  GET /dogs?name="...":
 Obtener un listado de las razas de perro que contengan la palabra ingresada como query parameter
 Si no existe ninguna raza de perro mostrar un mensaje adecuado
- GET /dogs/{idRaza}:
+*/
+
+router.get('/dogs', async (req, res) =>{
+    const { name } = req.query;
+    const dogs = await getAll();
+    if(name){
+        let filterDogs = await dogs.filter((d) =>
+        d.name.toLowerCase().includes(name.toLowerCase())
+        );
+        res.status(200).json(filterDogs);
+    } else {
+        res.status(200).json(dogs)
+    }
+});
+
+/*  GET /dogs/{idRaza}:
 Obtener el detalle de una raza de perro en particular
 Debe traer solo los datos pedidos en la ruta de detalle de raza de perro
 Incluir los temperamentos asociados
+*/
+
+router.get('/dogs/:id', async (req, res, next) =>{
+    try {
+        const id = parseInt(req.params.id);
+        const dogs = await getAll();
+        if(dogs.filter((d) => d.id === id).length == 0) res.status(404).send({error: `El perro con el id ${id} no fue encontrado` })
+        const dog = dogs.filter((d) => d.id === id);
+        res.status(200).json(dog[0])
+    } catch(e){
+        next(e);
+    };
+});
+
+/*
  POST /dogs:
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
-Crea una raza de perro en la base de datos relacionada con sus temperamentos 
-*/
+Crea una raza de perro en la base de datos relacionada con sus temperamentos  */
+
+router.put("/post", async (req, res, next)=>{
+    try{
+        let {
+            name,
+            weightMin,
+            weightMax,
+            heightMin,
+            heightMax,
+            lifespanMin,
+            lifespanMax,
+            image,
+            temperament,
+        } = req.body
+
+        const myDog = await Dog.create({
+            name,
+            weightMin,
+            weightMax,
+            heightMin,
+            heightMax,
+            lifespanMin,
+            lifespanMax,
+            image,
+        });
+        myDog.addTemperament(temperament);
+        res.status(201).json(myDog)
+    } catch(e){
+        next(e);
+    };
+});
+
+module.exports = router;
