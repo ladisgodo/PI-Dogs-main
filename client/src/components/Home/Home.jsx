@@ -23,6 +23,7 @@ export default function Home() {
                             return(
                                 <div>
                                     <Cards
+                                    id={d.id}
                                     name={d.name}
                                     img={d.image}
                                     weightMin={d.weightMin}

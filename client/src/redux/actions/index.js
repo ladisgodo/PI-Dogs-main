@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_TEMPERAMENTS, GET_DETAILS } from "./constants";
+import { GET_DOGS, GET_TEMPERAMENTS, GET_DETAILS, CLEAR_PAGE } from "./constants";
 import axios from 'axios';
 
 export function getDogs(){
@@ -30,3 +30,9 @@ export function getDetails(id){
         });
     };
 };
+
+export function clearPage(){
+    return{
+        type: CLEAR_PAGE
+    }
+}
