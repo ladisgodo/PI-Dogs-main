@@ -7,6 +7,7 @@ import s from './Home.module.css';
 import backgroundHome from '../Img/backgroundHome.webp';
 import Loading from "./Loading/Loading";
 import SearchBar from "../SearchBar/SearchBar";
+import NavBar from "../NavBar/NavBar";
 
 export default function Home() {
 
@@ -17,33 +18,7 @@ export default function Home() {
     },[dispatch]);
 
     const [loading = true, setLoading] = useState();
-
-    /* return (
-        <div>
-            <div className={s.container} >
-                {
-                    dogs.length>0 ? (
-                            dogs.map((d) =>{
-                                return(
-                                    <div key={d.id}>
-                                        <Cards
-                                        id={d.id}
-                                        name={d.name}
-                                        img={d.image}
-                                        weightMin={d.weightMin}
-                                        weightMax={d.weightMax}
-                                        temperament={d.temperament}
-                                        className={s.cards}
-                                        />
-                                    </div>
-                                )
-                            })
-                    )
-                    : <h1>Cargando</h1>
-                }
-            </div>
-        </div>
-    ) */
+    const [order, setOrder] = useState("");
 
     return (
         <div>
@@ -54,6 +29,7 @@ export default function Home() {
                     <div className={s.container} >
                             <img src={backgroundHome} alt='background-home' className={s.img} />
                         <div className={s.content}>
+                            <NavBar setOrder={setOrder} />
                             <SearchBar/>
                             <div>
                                 <Cards dogs={dogs} />

@@ -1,4 +1,6 @@
-import { GET_DOGS, GET_TEMPERAMENTS, GET_DETAILS, CLEAR_PAGE, GET_NAME_DOG } from "../actions/constants";
+import { GET_DOGS, GET_TEMPERAMENTS,
+         GET_DETAILS, CLEAR_PAGE, 
+         GET_NAME_DOG, FILTER_NAME } from "../actions/constants";
 
 const initialState = {
     dogs: [],
@@ -31,6 +33,14 @@ const rootReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 dogs: action.payload
+            }
+        case FILTER_NAME:
+            const filterDogs = action.payload === 'A-Z' ? 
+            state.dogs.sort((dog1, dog2) => dog1.name.localeCompare(dog2.name)) :
+            state.dogs.sort((dog1, dog2) => dog2.name.localeCompare(dog1.name)) ;
+            return{
+                ...state,
+                dogs: filterDogs
             }
         default: return state
     }
