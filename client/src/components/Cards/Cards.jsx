@@ -16,7 +16,7 @@ export default function Cards({dogs}){
                             <h1 className={s.text} >WeightMin:{d.weightMin}kg weightMax:{d.weightMax}kg</h1>
                             <h1>Temperaments: {d.temperament}</h1>
                             <Link to={`/dogs/${d.id}`} >
-                                <h1>View details</h1>
+                                <h1>View dog</h1>
                             </Link>
                         </div>
                     </div>
@@ -25,18 +25,4 @@ export default function Cards({dogs}){
             }
         </div>
     )
-
-    /* return (
-        <div>
-                <div className={s.container} >
-                    <h1 className={s.text} >Name: {name}</h1>
-                    <img src={img} alt={name} className={s.img} />
-                    <h1 className={s.text} >WeightMin:{weightMin}kg weightMax:{weightMax}kg</h1>
-                    <h1 className={s.text} >Temperaments: {temperament}</h1>
-                    <Link to={`/dogs/${id}`} >
-                        <h1>View details</h1>
-                    </Link>
-                </div>
-        </div>
-    ); */
 }
