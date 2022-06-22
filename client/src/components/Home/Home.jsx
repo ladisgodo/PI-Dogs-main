@@ -21,7 +21,7 @@ export default function Home() {
                 dogs.length>0 ? (
                         dogs.map((d) =>{
                             return(
-                                <div>
+                                <div key={d.id}>
                                     <Cards
                                     id={d.id}
                                     name={d.name}

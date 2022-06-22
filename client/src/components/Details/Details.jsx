@@ -23,9 +23,11 @@ export default function Details(){
                 details ? (
                     <div>
                         <h1>Name: {details.name}</h1>
-                        <h1>Weight: {details.weightMin} -{details.weightMax}</h1>
-                        <h1>Height: {details.heightMin} -{details.heightMin}</h1>
-                        <h1>Life span: {details.lifespanMin} -{details.lifespanMax}</h1>
+                        <h1>Weight: {details.weightMin} - {details.weightMax}</h1>
+                        <h1>Height: {details.heightMin} - {details.heightMin}</h1>
+                        {details.lifespanMax ?
+                        <h1>Life span: {details.lifespanMin} - {details.lifespanMax}</h1> 
+                        : <h1>Life span: {details.lifespanMin}</h1>}
                         <h1>Temperaments: {details.temperament}</h1>
                         <img src={details.image} alt={details.name}/>
                     </div>
