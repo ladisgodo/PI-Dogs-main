@@ -54,7 +54,7 @@ const getDataBaseInfo = async () => {
                 lifespanMin: e.lifespanMin,
                 lifespanMax: e.lifespanMax,
                 image: e.image ? e.image : "https://pbs.twimg.com/media/FMPSwVIXoAE4QSr?format=jpg&name=large",
-            }
+            };
         });
         return dbInfo;
     } catch(e){
