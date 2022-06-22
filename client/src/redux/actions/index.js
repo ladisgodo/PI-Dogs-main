@@ -1,4 +1,7 @@
-import { GET_DOGS, GET_TEMPERAMENTS, GET_DETAILS, CLEAR_PAGE, GET_NAME_DOG, FILTER_NAME } from "./constants";
+import { GET_DOGS, GET_TEMPERAMENTS,
+         GET_DETAILS, CLEAR_PAGE, 
+         GET_NAME_DOG, FILTER_NAME,
+         FILTER_WEIGHT } from "./constants";
 import axios from 'axios';
 
 export function getDogs(){
@@ -52,6 +55,13 @@ export function getNameDogs(name){
 export function filterName(payload){
     return {
         type: FILTER_NAME,
+        payload
+    }
+}
+
+export function filterWeight(payload){
+    return {
+        type: FILTER_WEIGHT,
         payload
     }
 }

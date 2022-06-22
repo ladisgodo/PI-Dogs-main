@@ -1,14 +1,13 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import FilterName from "./Filters/FilterName/FilterName";
+import FilterWeight from "./Filters/FilterWeight/FilterWeight";
 
 export default function NavBar({setOrder}){
-
-    const dispatch = useDispatch();
 
     return (
         <div>
             <FilterName setOrder={setOrder} />
+            <FilterWeight setOrder={setOrder} />
         </div>
     )
 }
