@@ -1,15 +1,13 @@
-.container{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 350px);
-    gap: 7%;
-    height: 100vh;
+.img{
+    min-height: 100%;
+    min-width: 1024px;
     width: 100%;
-    justify-content: center;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .cards{
-    width: 80%;
-    justify-content: center;
-    text-align: center;
-    margin: auto;
+    position: relative;
 }
