@@ -26,7 +26,7 @@ export default function Details(){
                         <h1>Weight: {details.weightMin} kg - {details.weightMax} kg</h1>
                         <h1>Height: {details.heightMin} cm - {details.heightMax} cm</h1>
                         {details.lifespanMax ?
-                        <h1>Life span: {details.lifespanMin} - {details.lifespanMax}</h1> 
+                        <h1>Life span: {details.lifespanMin} years - {details.lifespanMax} years</h1> 
                         : <h1>Life span: {details.lifespanMin}</h1>}
                         <h1>Temperaments: {details.temperament}</h1>
                         <img src={details.image} alt={details.name}/>
