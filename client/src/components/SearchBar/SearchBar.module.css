@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+    gap: 1rem;
+}
+
+.input{
+    outline: none;
+}
+
+.btn{
+    cursor: pointer;
+}

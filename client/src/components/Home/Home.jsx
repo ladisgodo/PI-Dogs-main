@@ -51,7 +51,7 @@ export default function Home() {
                 loading ? (
                     <Loading setLoading={setLoading} />
                 ) : (
-                    <div>
+                    <div className={s.container} >
                             <img src={backgroundHome} alt='background-home' className={s.img} />
                         <div className={s.content}>
                             <SearchBar/>
