@@ -105,13 +105,13 @@ Se debe desarrollar una aplicación de React/Redux que contenga las siguientes p
 
 __Pagina inicial__: deben armar una landing page con
 
-- [ ] Alguna imagen de fondo representativa al proyecto
-- [ ] Botón para ingresar al home (`Ruta principal`)
+- [x] Alguna imagen de fondo representativa al proyecto
+- [x] Botón para ingresar al home (`Ruta principal`)
 
 __Ruta principal__: debe contener
 
 - [ ] Input de búsqueda para encontrar razas de perros por nombre
-- [ ] Área donde se verá el listado de razas de perros. Deberá mostrar su:
+- [x] Área donde se verá el listado de razas de perros. Deberá mostrar su:
   - Imagen
   - Nombre
   - Temperamento
@@ -128,10 +128,10 @@ __IMPORTANTE__: Dentro de la Ruta Principal se deben mostrar tanto las razas de 
 
 __Ruta de detalle de raza de perro__: debe contener
 
-- [ ] Los campos mostrados en la ruta principal para cada raza (imagen, nombre y temperamento)
-- [ ] Altura
-- [ ] Peso
-- [ ] Años de vida
+- [x] Los campos mostrados en la ruta principal para cada raza (imagen, nombre y temperamento)
+- [x] Altura
+- [x] Peso
+- [x] Años de vida
 
 __Ruta de creación de raza de perro__: debe contener
 
