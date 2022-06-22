@@ -6,6 +6,7 @@ import Cards from "../Cards/Cards";
 import s from './Home.module.css';
 import backgroundHome from '../Img/backgroundHome.webp';
 import Loading from "./Loading/Loading";
+import SearchBar from "../SearchBar/SearchBar";
 
 export default function Home() {
 
@@ -51,9 +52,10 @@ export default function Home() {
                     <Loading setLoading={setLoading} />
                 ) : (
                     <div>
-                        <div>
                             <img src={backgroundHome} alt='background-home' className={s.img} />
-                            <div className={s.cards} >
+                        <div className={s.content}>
+                            <SearchBar/>
+                            <div>
                                 <Cards dogs={dogs} />
                             </div>
                         </div>
