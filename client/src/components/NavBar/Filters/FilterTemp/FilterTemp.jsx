@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterTemperaments } from "../../../../redux/actions";
 
-export default function FilterTemp() {
+export default function FilterTemp({setPage, setInput}) {
 
     const dispatch = useDispatch();
     const allTemps = useSelector((state) => state.temperaments);
@@ -10,6 +10,8 @@ export default function FilterTemp() {
     function handleTemp(e) {
         e.preventDefault();
         dispatch(filterTemperaments(e.target.value));
+        setPage(1);
+        setInput(1);
     }
 
     return(

@@ -8,6 +8,7 @@ import backgroundHome from '../Img/backgroundHome.webp';
 import Loading from "./Loading/Loading";
 import SearchBar from "../SearchBar/SearchBar";
 import NavBar from "../NavBar/NavBar";
+import Pagination from "../Pagination/Pagination";
 
 export default function Home() {
 
@@ -24,6 +25,16 @@ export default function Home() {
     const [loading = true, setLoading] = useState();
     const [order, setOrder] = useState("");
 
+    // Paginado
+
+    const [page, setPage] = useState(1);
+    const [perPage, setPerPage] = useState(8);
+    const [input, setInput] = useState(1);
+
+    const max = Math.ceil(dogs.length / 8)
+
+    // console.log(max);
+
     return (
         <div>
             {
@@ -33,10 +44,11 @@ export default function Home() {
                     <div className={s.container} >
                             <img src={backgroundHome} alt='background-home' className={s.img} />
                         <div className={s.content}>
-                            <NavBar setOrder={setOrder} />
+                            <NavBar setOrder={setOrder} setPage={setPage} setInput={setInput} />
                             <SearchBar/>
+                            <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />
                             <div>
-                                <Cards dogs={dogs} />
+                                <Cards dogs={dogs} page={page} perPage={perPage}/>
                             </div>
                         </div>
                     </div>

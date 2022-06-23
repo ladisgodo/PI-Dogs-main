@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import s from './Cards.module.css'
 
-export default function Cards({dogs}){
+export default function Cards({dogs, page, perPage}){
 
     return(
         <div className={s.container}>
             {
-            dogs.map((d) =>{
+            dogs.slice(
+                (page - 1) * perPage,
+                (page - 1) * perPage + perPage
+            ).map((d) =>{
                 return(
                     <div className={s.cards} key={d.id}>
                         <div className={s.content}>
