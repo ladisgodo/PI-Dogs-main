@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getDogs } from '../../redux/actions'
+import { getDogs, getTemperaments } from '../../redux/actions'
 import Cards from "../Cards/Cards";
 import s from './Home.module.css';
 import backgroundHome from '../Img/backgroundHome.webp';
@@ -15,6 +15,10 @@ export default function Home() {
     const dogs = useSelector((state) => state.dogs);
     useEffect(() =>{
         dispatch(getDogs())
+    },[dispatch]);
+    
+    useEffect(() =>{
+        dispatch(getTemperaments())
     },[dispatch]);
 
     const [loading = true, setLoading] = useState();

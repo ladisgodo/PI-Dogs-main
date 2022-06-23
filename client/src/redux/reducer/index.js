@@ -1,7 +1,7 @@
 import { GET_DOGS, GET_TEMPERAMENTS,
          GET_DETAILS, CLEAR_PAGE, 
          GET_NAME_DOG, FILTER_NAME,
-         FILTER_WEIGHT } from "../actions/constants";
+         FILTER_WEIGHT, FILTER_TEMP } from "../actions/constants";
 
 const initialState = {
     dogs: [],
@@ -50,6 +50,16 @@ const rootReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 dogs: filterWeight
+            }
+        case FILTER_TEMP:
+            const filterTemp = action.payload === "all" ? 
+            state.allDogs :
+            state.allDogs.filter((d) => {
+                return d.temperament.split(", ").includes(action.payload)
+            })
+            return{
+                ...state,
+                dogs: filterTemp
             }
         default: return state
     }
