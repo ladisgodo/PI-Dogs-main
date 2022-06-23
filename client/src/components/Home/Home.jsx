@@ -50,6 +50,7 @@ export default function Home() {
                                 <div>
                                     <Cards dogs={dogs} page={page} perPage={perPage}/>
                                 </div>
+                                <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />
                             </div>
                         </div> 
                 }
