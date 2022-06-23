@@ -13,6 +13,16 @@ export default function Pagination({page, setPage, max, input, setInput}){
         setPage(page - 1);
     }
 
+    function firstPage(){
+        setInput(1);
+        setPage(1);
+    }
+
+    function lastPage(){
+        setInput(max);
+        setPage(max);
+    }
+
     function keyDown(e){
         if(e.key === 'Enter'){
             setPage(parseInt(e.target.value))
@@ -21,6 +31,7 @@ export default function Pagination({page, setPage, max, input, setInput}){
                 setInput(1);
             } else {
                 setPage(parseInt(e.target.value));
+                setInput(parseInt(e.target.value));
             }
         }
     }
@@ -31,6 +42,8 @@ export default function Pagination({page, setPage, max, input, setInput}){
 
     return(
         <div className={s.container}>
+            <button onClick={(e) => firstPage()}
+            disabled={page <= 1}>First page</button>
             <button onClick={(e) =>prevPage()}
             disabled={page <= 1}>Previous</button>
             <input onKeyDown={(e) =>keyDown(e)} 
@@ -40,6 +53,8 @@ export default function Pagination({page, setPage, max, input, setInput}){
             <p className={s.text}>de {max}</p>
             <button onClick={(e) =>nextPage()}
             disabled={page >= max}>Next</button>
+            <button onClick={(e) => lastPage()}
+            disabled={page >= max}>Last page</button>
         </div>
     )
 }
