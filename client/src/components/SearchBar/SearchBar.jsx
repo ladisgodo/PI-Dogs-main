@@ -14,7 +14,7 @@ export default function SearchBar(){
         setName(e.target.value)
     }
     function handleEnter(e){
-        if (e.hey === "Enter"){
+        if (e.key === "Enter"){
             handleSubmit(e);
         }
     }
