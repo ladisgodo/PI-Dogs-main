@@ -1,9 +1,11 @@
 import React from "react";
+import loadingImage from '../../Img/Loading.jpg'
+import s from './Loading.module.css'
 
 export default function Loading({ setLoading }){
     return(
         <div>
-            <h1>Cargando...</h1>
+            <img src={loadingImage} className={s.img} />
             {
                 setTimeout(() =>{
                     setLoading(false)
