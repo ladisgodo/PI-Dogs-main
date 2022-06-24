@@ -42,6 +42,7 @@ export default function CreateDog(){
         } else {
             alert('No puede tener mas de 4 temperamentos');
         }
+        console.log(input.temperament)
     };
 
     function handleDelete(e){
@@ -122,14 +123,14 @@ export default function CreateDog(){
                         <option hidden value=''>Choose temperaments</option>
                         {
                             allTemps.map((t) => (
-                                <option key={t.id} value={t.name} >{t.name}</option>
+                                <option key={t.id} value={t}>{t.name}</option>
                             ))
                         }
                     </select>
                     <ul>
                             {input.temperament.map((t) =>(
-                        <li key={t}>
-                                <button onClick={() =>handleDelete(t)} >{t}</button>
+                        <li>
+                                <button onClick={() =>handleDelete(t)} >{t.name}</button>
                         </li>
                             ))}
                     </ul>
