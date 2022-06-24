@@ -120,7 +120,7 @@ router.get('/dogs/:id', async (req, res, next) =>{
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
 Crea una raza de perro en la base de datos relacionada con sus temperamentos  */
 
-router.put("/post", async (req, res, next)=>{
+router.post("/post", async (req, res, next)=>{
     try{
         let {
             name,

@@ -50,6 +50,13 @@ export function getNameDogs(name){
     }
 }
 
+export function createDog(payload){
+    return async function(dispatch){
+        const dog = await axios.post('/post', payload)
+        return dog
+    }
+}
+
 // FILTERS
 
 export function filterName(payload){
