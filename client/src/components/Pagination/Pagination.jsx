@@ -5,12 +5,12 @@ export default function Pagination({page, setPage, max, input, setInput}){
 
     function nextPage(){
         setPage(page + 1);
-        setInput(page);
+        setInput(input + 1);
     }
 
     function prevPage(){
         setPage(page - 1);
-        setInput(page);
+        setInput(input - 1);
     }
 
     function firstPage(){
