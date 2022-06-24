@@ -45,7 +45,7 @@ export default function Home() {
                                 <img src={backgroundHome} alt='background-home' className={s.img} />
                             <div className={s.content}>
                                 <NavBar setOrder={setOrder} setPage={setPage} setInput={setInput} />
-                                <SearchBar/>
+                                <SearchBar setPage={setPage} setInput={setInput}/>
                                 <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />
                                 <div>
                                     <Cards dogs={dogs} page={page} perPage={perPage}/>

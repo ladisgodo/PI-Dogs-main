@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getNameDogs } from "../../redux/actions";
 import s from './SearchBar.module.css';
 
-export default function SearchBar(){
+export default function SearchBar({setPage, setInput}){
 
     const dispatch = useDispatch();
     const [name = '' , setName] = useState();
@@ -22,6 +22,8 @@ export default function SearchBar(){
         e.preventDefault();
         dispatch(getNameDogs(name));
         setName('');
+        setPage(1);
+        setInput(1);
     }
 
     return(
