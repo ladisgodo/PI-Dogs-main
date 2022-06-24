@@ -32,7 +32,7 @@ export default function SearchBar(){
              className={s.input}/>
             <button type='Submit' 
             onClick={(e) =>handleSubmit(e)}
-            className={s.btn}>Buscar</button>
+            className={s.btn}>Search</button>
         </div>
     )
 }
