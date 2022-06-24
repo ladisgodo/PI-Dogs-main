@@ -39,7 +39,7 @@ export default function Pagination({page, setPage, max, input, setInput}){
     function onChange(e){
         setInput (e.target.value);
     }
-
+    
     return(
         <div className={s.container}>
             <button onClick={(e) => firstPage()}

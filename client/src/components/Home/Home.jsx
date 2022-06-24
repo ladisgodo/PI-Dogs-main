@@ -46,11 +46,11 @@ export default function Home() {
                             <div className={s.content}>
                                 <NavBar setOrder={setOrder} setPage={setPage} setInput={setInput} />
                                 <SearchBar setPage={setPage} setInput={setInput}/>
-                                <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />
+                                {max >=1 && <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />}
                                 <div>
                                     <Cards dogs={dogs} page={page} perPage={perPage}/>
                                 </div>
-                                <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />
+                                {max >=1 && <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />}
                             </div>
                         </div> 
                 }

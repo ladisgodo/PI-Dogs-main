@@ -20,10 +20,14 @@ export default function SearchBar({setPage, setInput}){
     }
     function handleSubmit(e){
         e.preventDefault();
-        dispatch(getNameDogs(name));
-        setName('');
-        setPage(1);
-        setInput(1);
+        if(!name){
+            alert('No estas buscando nada')
+        } else{
+            dispatch(getNameDogs(name));
+            setName('');
+            setPage(1);
+            setInput(1);
+        }
     }
 
     return(
