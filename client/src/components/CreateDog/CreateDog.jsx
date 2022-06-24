@@ -123,14 +123,14 @@ export default function CreateDog(){
                         <option hidden value=''>Choose temperaments</option>
                         {
                             allTemps.map((t) => (
-                                <option key={t.id} value={t}>{t.name}</option>
+                                <option key={t.id} value={t.name}>{t.name}</option>
                             ))
                         }
                     </select>
                     <ul>
                             {input.temperament.map((t) =>(
-                        <li>
-                                <button onClick={() =>handleDelete(t)} >{t.name}</button>
+                        <li key={t}>
+                                <button onClick={() =>handleDelete(t)} >{t}</button>
                         </li>
                             ))}
                     </ul>
