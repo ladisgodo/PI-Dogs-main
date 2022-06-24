@@ -36,7 +36,18 @@ const getApiInfo = async () => {
     };
 };
 
-const getDataBaseInfo = async () => {
+/* const getDataBaseInfo = async () => {
+    try{
+        const dogs = await Dog.findAll({
+            include: Temperament,
+        })
+        return dogs;
+    } catch(e){
+        console.log("Error en getDataBaseInfo", e);
+    };
+}; */
+
+/* const getDataBaseInfo = async () => {
     try{
         const dogs = await Dog.findAll({
             include: Temperament,
@@ -60,7 +71,36 @@ const getDataBaseInfo = async () => {
     } catch(e){
         console.log("Error en getDataBaseInfo", e);
     };
-};
+}; */
+
+const getDataBaseInfo = async () => {
+    try {
+      const perros = await Dog.findAll({
+        include: Temperament,
+      });
+  
+      const info = perros.map((e) => {
+        let temp = e.temperaments.map((e) => e.name);
+        let aux = temp.join(", ");
+        // console.log("ACA ESTOY", e.temperament)
+        return {
+            id: parseInt(e.id),
+            name: e.name,
+            weightMin: e.weightMin,
+            weightMax: e.weightMax,
+            heightMin: e.heightMin,
+            heightMax: e.heightMax,
+            lifespanMin: e.lifespanMin,
+            lifespanMax: e.lifespanMax,
+            image: e.image ? e.image : "https://pbs.twimg.com/media/FMPSwVIXoAE4QSr?format=jpg&name=large",
+        };
+      });
+      //console.log(info)
+      return info;
+    } catch (error) {
+      console.log("ERROR IN getDBInfo", error);
+    }
+  };
 
 // Junto la informacion de la API y de la base de datos
 
@@ -107,7 +147,8 @@ router.get('/dogs/:id', async (req, res, next) =>{
     try {
         const id = parseInt(req.params.id);
         const dogs = await getAll();
-        if(dogs.filter((d) => d.id === id).length == 0) res.status(404).send({error: `El perro con el id ${id} no fue encontrado` })
+        if(dogs.filter((d) => d.id === id).length == 0) 
+        res.status(404).send({error: `El perro con el id ${id} no fue encontrado`})
         const dog = dogs.filter((d) => d.id === id);
         res.status(200).json(dog[0])
     } catch(e){
@@ -144,11 +185,18 @@ router.post("/post", async (req, res, next)=>{
             lifespanMax,
             image,
         });
-        myDog.addTemperament(temperament);
+        myDog.addTemperament(temperament.name);
         res.status(201).json(myDog)
     } catch(e){
         next(e);
     };
 });
+
+// router para perros de la db
+
+router.get('/db', async (req, res) =>{
+    const dogs = await getDataBaseInfo();
+    res.status(200).json(dogs)
+})
 
 module.exports = router;
