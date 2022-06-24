@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTemperaments } from "../../redux/actions";
@@ -6,12 +6,31 @@ import { getTemperaments } from "../../redux/actions";
 
 export default function CreateDog(){
 
+    const [input, setInput] = useState({
+        name: '',
+        weightMin: '',
+        weightMax: '',
+        heightMin: '',
+        heightMax: '',
+        lifespanMin: '',
+        lifespanMax: '',
+        image: '',
+        temperament: [],
+    });
+
     const dispatch = useDispatch();
     const allTemps = useSelector((state) => state.temperaments);
 
     useEffect(() =>{
         dispatch(getTemperaments())
     },[dispatch]);
+
+    function handleChange(e){
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+    }
 
 
     return(
