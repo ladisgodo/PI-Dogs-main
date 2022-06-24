@@ -5,7 +5,7 @@ import s from './Loading.module.css'
 export default function Loading({ setLoading }){
     return(
         <div>
-            <img src={loadingImage} className={s.img} />
+            <img src={loadingImage} className={s.img} alt='loading'/>
             {
                 setTimeout(() =>{
                     setLoading(false)

@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { getDogs } from "../../redux/actions";
+import { Link } from "react-router-dom";
 import FilterName from "./Filters/FilterName/FilterName";
 import FilterWeight from "./Filters/FilterWeight/FilterWeight";
 import FilterTemp from "./Filters/FilterTemp/FilterTemp";
@@ -22,6 +23,9 @@ export default function NavBar({setOrder, setPage, setInput}){
             <FilterWeight setOrder={setOrder} />
             <FilterTemp setPage={setPage} setInput={setInput} />
             <button onClick={(e) => handleReset(e) } >Reset filters</button>
+            <Link to='/create'>
+                <button>Create dog</button>
+            </Link>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { clearPage, getDetails } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 export default function Details(){
     const { id } = useParams();
@@ -19,6 +20,9 @@ export default function Details(){
 
     return(
         <div>
+            <Link to='/home'>
+                <button>Back to home</button>
+            </Link>
             {
                 details ? (
                     <div>
