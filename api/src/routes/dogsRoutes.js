@@ -84,7 +84,7 @@ const getDataBaseInfo = async () => {
         let aux = temp.join(", ");
         // console.log("ACA ESTOY", e.temperament)
         return {
-            id: parseInt(e.id),
+            id: e.id,
             name: e.name,
             weightMin: e.weightMin,
             weightMax: e.weightMax,
