@@ -175,6 +175,10 @@ router.post("/post", async (req, res, next)=>{
             temperament,
         } = req.body
 
+        /* let temperamentsDB = await Temperament.findAll({
+            where: { name: temperament }
+        }) */
+
         const myDog = await Dog.create({
             name,
             weightMin,
@@ -185,7 +189,7 @@ router.post("/post", async (req, res, next)=>{
             lifespanMax,
             image,
         });
-        myDog.addTemperament(temperament.name);
+        await myDog.addTemperament(temperament);
         res.status(201).json(myDog)
     } catch(e){
         next(e);
