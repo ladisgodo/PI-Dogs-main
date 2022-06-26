@@ -173,7 +173,6 @@ router.post("/post", async (req, res, next)=>{
             lifespanMax,
             image,
             temperament,
-            id,
         } = req.body
 
         /* let temperamentsDB = await Temperament.findAll({
@@ -181,7 +180,6 @@ router.post("/post", async (req, res, next)=>{
         }) */
 
         const myDog = await Dog.create({
-            id,
             name,
             weightMin,
             weightMax,
