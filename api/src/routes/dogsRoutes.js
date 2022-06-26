@@ -156,6 +156,32 @@ router.get('/dogs/:id', async (req, res, next) =>{
     };
 });
 
+/* router.get("/dogs/:id", async (req, res, next) => {
+    try {
+      let dogBd = [];
+      const id = req.params.id;
+      if (typeof id === "string" && id.length > 6) {
+        dogBd = await Dog.findAll({ where: { id: id }, include: Temperament });
+      }
+      if (dogBd.length) {
+        res.send(dogBd);
+      } else {
+        const dogsTotal = await getAllDogs();
+        //console.log(dogsTotal);
+        let dogId = dogsTotal.filter((el) => el.id == id);
+        // console.log("id",  dogId)
+        // console.log("db",  dogBd)
+        if (dogId) {
+          res.send(dogId);
+        } else {
+          res.send("Doggie not found!");
+        }
+      }
+    } catch (error) {
+      next(error);
+    }
+  }); */
+
 /*
  POST /dogs:
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
