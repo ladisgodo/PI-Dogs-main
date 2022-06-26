@@ -3,20 +3,20 @@ const axios = require('axios');
 const { Temperament } = require('../db')
 const { API_KEY } = process.env;
 
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+/* Importar todos los routers;
+ Ejemplo: const authRouter = require('./auth.js'); */
 
 const router = Router();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+/* Configurar los routers
+Ejemplo: router.use('/auth', authRouter);
 
-/*
+
  GET /temperaments:
 Obtener todos los temperamentos posibles
 En una primera instancia deberán obtenerlos desde la API externa y guardarlos en 
-su propia base de datos y luego ya utilizarlos desde allí 
-*/
+su propia base de datos y luego ya utilizarlos desde allí  */
+
 
 router.get('/temperaments', async (req, res) =>{
     try {
