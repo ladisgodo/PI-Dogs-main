@@ -175,10 +175,6 @@ router.post("/post", async (req, res, next)=>{
             temperament,
         } = req.body
 
-        /* let temperamentsDB = await Temperament.findAll({
-            where: { name: temperament }
-        }) */
-
         const myDog = await Dog.create({
             name,
             weightMin,
