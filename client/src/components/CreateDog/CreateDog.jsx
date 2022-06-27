@@ -3,9 +3,49 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector} from "react-redux";
 import { createDog, getTemperaments } from "../../redux/actions";
 
+// Validacion de errores con regex
 
-export default function CreateDog(){
+function validate(input) {
+    var errors = {};
+  
+  
+    if (!input.name || !/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.name)){
+      errors.name = "❌ The first letter must be uppercase";
+  }
+  if(!input.heightMin || !/^[1-9]\d*(\.\d+)?$/.test(input.heightMin)){
+      errors.heightMin = '❌ Only numbers';
+  }
+  if(!input.heightMax || !/^[1-9]\d*(\.\d+)?$/.test(input.heightMax)){
+      errors.heightMax = '❌ Only numbers';
+  }
+  if(input.heightMax <= input.heightMin){
+      errors.heightMin = '❌ Min value cannot be greater than the max';
+  }
+  if(!input.weightMin || !/^[1-9]\d*(\.\d+)?$/.test(input.weightMin)){
+      errors.weightMin = '❌ Only numbers';
+  }
+  if(!input.weightMax || !/^[1-9]\d*(\.\d+)?$/.test(input.weightMax)){
+      errors.weightMax = '❌ Only numbers';
+  }
+  if(input.weightMax <= input.weightMin){
+      errors.weightMin = '❌ Min value cannot be greater than the max';
+  }
+  if(!input.lifespanMin || !/^[1-9]\d*(\.\d+)?$/.test(input.lifespanMin)){
+      errors.lifespanMin = '❌ Only numbers';
+  }
+  if(!input.lifespanMax || !/^[1-9]\d*(\.\d+)?$/.test(input.lifespanMax)){
+  errors.lifespanMax = '❌ Only numbers';
+  }
+  if(input.lifespanMax <= input.lifespanMin){
+      errors.lifespanMin = '❌ Min value cannot be greater than the max';
+  }
+  if (input.image && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(input.image) ){
+      errors.image = '❌ Must be an URL or be empty';
+  }
+  return errors
+  }
 
+  export default function CreateDog(){
     const [input, setInput] = useState({
         name: "",
         weightMin: "",
@@ -18,24 +58,37 @@ export default function CreateDog(){
         temperament: []
         })
 
+    const [errors, setErrors] = useState({});
+
     const dispatch = useDispatch();
     const history = useHistory();
 
     const allTemps = useSelector((state) => state.temperaments);
 
+    validate(input);
+
     function handleChange(e){
         setInput({
             ...input,
             [e.target.name]: e.target.value,
-        })
+        });
+        setErrors(
+            validate({
+                ...input,
+                [e.target.name]: e.target.value,
+            })
+        )
     };
 
     function handleSelect(e){
+        if(input.temperament.includes(e.target.value)) alert('Ya existe el temperamento')
+        else{
             setInput({
               ...input,
               temperament: [...input.temperament, e.target.value],
             });
             console.log(input.temperament);
+        }
     }
 
     function handleDelete(el){
@@ -47,7 +100,17 @@ export default function CreateDog(){
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(input);
+        if (
+      
+            input.name !== "" &&
+            input.heightMin !== "" &&
+            input.heightMax > input.heightMin &&
+            input.weightMin !== "" &&
+            input.weightMax > input.weightMin &&
+            input.lifespanMin !== "" &&
+            input.lifespanMax > input.lifespanMin &&
+            input.temperament.length !== 0
+          ){
         dispatch(createDog(input));
         setInput({
             name: "",
@@ -60,6 +123,9 @@ export default function CreateDog(){
             image: "",
         });
         history.push('/home');
+        } else {
+        alert('Faltan cosas pa');
+        }
     }
 
     useEffect(() => {
@@ -75,29 +141,53 @@ export default function CreateDog(){
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <label>Name:</label>
-                    <input name="name" type='text' placeholder="Enter the name..."  onChange={(e) => handleChange(e)} />
+                    <input name="name" type='text' 
+                    placeholder="Enter the name..."  
+                    onChange={(e) => handleChange(e)} />
+                    {errors.name && <p>{errors.name}</p>}
                 </div>
                 <div>
                     <label>Weight min:</label>
-                    <input name="weightMin" type='number' min='1' max='100' placeholder="Min"  onChange={(e) => handleChange(e)}/>kg.
+                    <input name="weightMin" type='number' 
+                    min='1' max='100' placeholder="Min" 
+                    onChange={(e) => handleChange(e)}/>kg.
                     <label>Weight max:</label>
-                    <input name="weightMax" type='number' min='1' max='100' placeholder="Max"  onChange={(e) => handleChange(e)}/>kg.
+                    <input name="weightMax" type='number' 
+                    min='1' max='100' placeholder="Max"  
+                    onChange={(e) => handleChange(e)}/>kg.
+                    {errors.weightMin && <p>{errors.weightMin}</p>}
+                    {errors.weightMax && <p>{errors.weightMax}</p>}
                 </div>
                 <div>
                     <label>Height min:</label>
-                    <input name="heightMin" type='number' min='1' max='100' placeholder="Min"  onChange={(e) => handleChange(e)}/>cm.
+                    <input name="heightMin" type='number' 
+                    min='1' max='100' placeholder="Min"  
+                    onChange={(e) => handleChange(e)}/>cm.
                     <label>Height max:</label>
-                    <input name="heightMax" type='number' min='1' max='100' placeholder="Max"  onChange={(e) => handleChange(e)}/>cm.
+                    <input name="heightMax" type='number' 
+                    min='1' max='100' placeholder="Max"  
+                    onChange={(e) => handleChange(e)}/>cm.
+                    {errors.heightMin && <p>{errors.heightMin}</p>}
+                    {errors.heightMax && <p>{errors.heightMax}</p>}
                 </div>
                 <div>
                     <label>Life time min:</label>
-                    <input name="lifespanMin" type='number' min='1' max='100' placeholder="Min"  onChange={(e) => handleChange(e)}/>years.
+                    <input name="lifespanMin" type='number' 
+                    min='1' max='100' placeholder="Min"  
+                    onChange={(e) => handleChange(e)}/>years.
                     <label>Life time max:</label>
-                    <input name="lifespanMax" type='number' min='1' max='100' placeholder="Max"  onChange={(e) => handleChange(e)}/>years.
+                    <input name="lifespanMax" type='number' 
+                    min='1' max='100' placeholder="Max"  
+                    onChange={(e) => handleChange(e)}/>years.
+                    {errors.lifespanMin && (<p>{errors.lifespanMin}</p>)}
+                    {errors.lifespanMax && (<p>{errors.lifespanMax}</p>)}
                 </div>
                 <div>
                     <label>Image:</label>
-                    <input type='imagen' name="image" placeholder="URL"  onChange={(e) => handleChange(e)} />
+                    <input type='imagen' name="image" 
+                    placeholder="URL"  
+                    onChange={(e) => handleChange(e)} />
+                    {errors.image && (<p>{errors.image}</p>)}
                 </div>
                 <div>
                     <label>Temperaments:</label>
@@ -119,6 +209,8 @@ export default function CreateDog(){
                 </div>
                 <button type="submit" >Crear!</button>
             </form>
+            <div>
+      </div>
         </div>
     )
 }
