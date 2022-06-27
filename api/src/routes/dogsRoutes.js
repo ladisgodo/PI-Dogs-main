@@ -83,7 +83,7 @@ const getDataBaseInfo = async () => {
   
       const info = perros.map((e) => {
         let temp = e.temperaments.map((e) => e.name);
-        let aux = temp.join(", ");
+        let finalTemp = temp.join(", ");
         let newID = (e.id).match(regex);
         newID = newID.map((e) => parseInt(e));
         let finalID = newID.reduce((a, b) => a + b, 0)
@@ -98,6 +98,7 @@ const getDataBaseInfo = async () => {
             lifespanMin: e.lifespanMin,
             lifespanMax: e.lifespanMax,
             image: e.image ? e.image : "https://pbs.twimg.com/media/FMPSwVIXoAE4QSr?format=jpg&name=large",
+            temperament: finalTemp
         };
       });
       //console.log(info)
@@ -216,7 +217,16 @@ router.post("/post", async (req, res, next)=>{
             lifespanMax,
             image,
         });
-        await myDog.addTemperament(temperament);
+        console.log(temperament);
+        /* let temperamentsDB = []
+        for(let i=0; i<temperament.length; i++){
+
+        } */
+        let temperamentsDB = await Temperament.findAll({
+            where: { name: temperament },
+          });
+        console.log(temperamentsDB);
+        await myDog.addTemperament(temperamentsDB);
         res.status(201).json(myDog)
     } catch(e){
         next(e);

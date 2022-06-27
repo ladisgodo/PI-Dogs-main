@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch} from "react-redux";
-import { createDog } from "../../redux/actions";
+import { useDispatch, useSelector} from "react-redux";
+import { createDog, getTemperaments } from "../../redux/actions";
 
 
 export default function CreateDog(){
@@ -15,10 +15,13 @@ export default function CreateDog(){
         lifespanMin: "",
         lifespanMax: "",
         image: "",
+        temperament: []
         })
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const allTemps = useSelector((state) => state.temperaments);
 
     function handleChange(e){
         setInput({
@@ -26,6 +29,21 @@ export default function CreateDog(){
             [e.target.name]: e.target.value,
         })
     };
+
+    function handleSelect(e){
+            setInput({
+              ...input,
+              temperament: [...input.temperament, e.target.value],
+            });
+            console.log(input.temperament);
+    }
+
+    function handleDelete(el){
+        setInput({
+          ...input,
+          temperament: input.temperament.filter((e) => e !== el),
+        });
+      }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -43,6 +61,10 @@ export default function CreateDog(){
         });
         history.push('/home');
     }
+
+    useEffect(() => {
+        dispatch(getTemperaments());
+      }, [dispatch]);
 
     return(
         <div>
@@ -76,6 +98,24 @@ export default function CreateDog(){
                 <div>
                     <label>Image:</label>
                     <input type='imagen' name="image" placeholder="URL"  onChange={(e) => handleChange(e)} />
+                </div>
+                <div>
+                    <label>Temperaments:</label>
+                    <select onChange={(e) =>handleSelect(e)} >
+                        {
+                            allTemps.map((t) =>(
+                                <option key={t.id} value={t.name}>{t.name}</option>
+                            ))
+                        }
+                    </select>
+                    <div>
+                        <label>Selected:</label>
+                        {
+                            input.temperament.map((e) =>(
+                                <button type="button" onClick={() =>handleDelete(e)} key={e} >{e}</button>
+                            ))
+                        }
+                    </div>
                 </div>
                 <button type="submit" >Crear!</button>
             </form>
