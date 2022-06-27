@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { createDog } from "../../redux/actions";
 
@@ -18,6 +18,7 @@ export default function CreateDog(){
         })
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     function handleChange(e){
         setInput({
@@ -39,7 +40,8 @@ export default function CreateDog(){
             lifespanMin: "",
             lifespanMax: "",
             image: "",
-        })
+        });
+        history.push('/home');
     }
 
     return(
