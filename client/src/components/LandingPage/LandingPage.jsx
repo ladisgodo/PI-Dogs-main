@@ -10,7 +10,6 @@ export default function LandingPage() {
         <div className={styles.container} >
             <img src={background} alt='background' className={styles.img} ></img>
             <div>
-                <h1 className={styles.title} >Estoy en la LandingPage</h1>
                 <Link to='/home'>
                     <button className={styles.btn} >Entrar a home</button>
                 </Link>
