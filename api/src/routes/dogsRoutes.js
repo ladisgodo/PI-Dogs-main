@@ -78,13 +78,18 @@ const getDataBaseInfo = async () => {
       const perros = await Dog.findAll({
         include: Temperament,
       });
+
+      var regex = /(\d+)/g;
   
       const info = perros.map((e) => {
         let temp = e.temperaments.map((e) => e.name);
         let aux = temp.join(", ");
+        let newID = (e.id).match(regex);
+        newID = newID.map((e) => parseInt(e));
+        let finalID = newID.reduce((a, b) => a + b, 0)
         // console.log("ACA ESTOY", e.temperament)
         return {
-            id: e.id,
+            id: finalID,
             name: e.name,
             weightMin: e.weightMin,
             weightMax: e.weightMax,
