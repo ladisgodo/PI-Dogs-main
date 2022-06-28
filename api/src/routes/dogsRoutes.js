@@ -28,6 +28,7 @@ const getApiInfo = async () => {
                 lifespanMax: e.life_span.split(" - ")[1] && e.life_span.split(" - ")[1].split(" ")[0],
                 temperament: e.temperament ? e.temperament : "Unknown",
                 image: e.image.url,
+                userCreated: false
             };
         });
         return apiInfo;
@@ -98,7 +99,8 @@ const getDataBaseInfo = async () => {
             lifespanMin: e.lifespanMin,
             lifespanMax: e.lifespanMax,
             image: e.image ? e.image : "https://pbs.twimg.com/media/FMPSwVIXoAE4QSr?format=jpg&name=large",
-            temperament: finalTemp
+            temperament: finalTemp,
+            userCreated: e.userCreated
         };
       });
       //console.log(info)

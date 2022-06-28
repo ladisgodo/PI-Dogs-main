@@ -11,7 +11,7 @@ export default function LandingPage() {
             <img src={background} alt='background' className={s.img} ></img>
                     <h1 className={s.title}>Welcome to my Dog Page</h1>
                 <Link to='/home'>
-                    <button className={s.btn}>Entrar a home</button>
+                    <button className={s.btn}>Home</button>
                 </Link>
         </div>
     )
