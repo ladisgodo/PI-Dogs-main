@@ -1,9 +1,7 @@
-
-
 .container{
 	display: flex;
-  	width: 100vw;
-	height: 100vh;
+  	width: auto;
+	height: 95vh;
   	justify-content: center;
   	align-items: center;
 }
