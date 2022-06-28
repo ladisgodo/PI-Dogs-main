@@ -27,8 +27,14 @@
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
   }
 
-.text{
-    margin: 2,5%;
+.name{
+    font-size: 200%;
+    height: 20px;
+    margin-top: 0px;
+}
+
+.weight{
+    margin-top: 10%;
     text-decoration: none;
     font-size: 140%;
 }
@@ -39,4 +45,9 @@
     align-items: center;
     width: 100%;
     height: 300px;
+}
+
+.temp{
+    font-size: 20px;
+    height: 45px;
 }
