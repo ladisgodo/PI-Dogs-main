@@ -14,15 +14,6 @@
     left: 0;
 }
 
-.text{
-    display: flex;
-    position: absolute;
-    color: black;
-    top: 25%;
-    left: 6%;
-    font-size: 45px;
-}
-
 .title{
     display: flex;
     position: absolute;
