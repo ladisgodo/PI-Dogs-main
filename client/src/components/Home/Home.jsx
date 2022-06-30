@@ -44,7 +44,7 @@ export default function Home() {
                         <div className={s.container} >
                                 <img src={backgroundHome} alt='background-home' className={s.img} />
                             <div className={s.content}>
-                                <NavBar setOrder={setOrder} setPage={setPage} setInput={setInput} />
+                                <NavBar className={s.navbar} setOrder={setOrder} setPage={setPage} setInput={setInput} />
                                 <SearchBar setPage={setPage} setInput={setInput}/>
                                 {max >=1 && <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />}
                                 <div>
