@@ -1,10 +1,10 @@
 import React from "react";
-import s from './Loading.module.css'
+import s from './LoadingDetails.module.css'
 
-export default function Loading({ setLoading }){
+export default function LoadingDetails({ setLoadingDetails }){
         setTimeout(() =>{
-            setLoading(false)
-        }, 2000)
+            setLoadingDetails(false)
+        }, 700)
     return(
         <div className={s.container}>
             <div className={s.loading}></div>

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { clearPage, getDetails } from "../../redux/actions";
 import { Link } from "react-router-dom";
+import LoadingDetails from './LoadingDetails/LoadingDetails'
 import s from './Details.module.css'
 
 export default function Details(){
@@ -10,6 +11,7 @@ export default function Details(){
     const dispatch = useDispatch();
 
     const details = useSelector((state) => state.details);
+    const [loadingDetails = true, setLoadingDetails] = useState();
 
     useEffect(() =>{
         dispatch(getDetails(id))
@@ -23,17 +25,30 @@ export default function Details(){
         <div>
             <div className={s.container}>
                 {
-                    details ? (
+                    loadingDetails ? (
+                        <LoadingDetails setLoadingDetails={setLoadingDetails}/>
+                    ) : 
+                    (
                         <div className={s.details}>
                                 <div className={s.title}>
                                     <h1 className={s.name}>{details.name}</h1>
                                 </div>
                                 <div className={s.text}>
-                                    <h1 className={s.info}>Weight: {details.weightMin} kg - {details.weightMax} kg</h1>
-                                    <h1 className={s.info}>Height: {details.heightMin} cm - {details.heightMax} cm</h1>
+                                    {
+                                        details.weightMin && details.weightMax ? 
+                                        <h1 className={s.info}>Weight: {details.weightMin} kg - {details.weightMax} kg</h1>
+                                        :
+                                        <h1 className={s.info}>Weight: {details.weightMin} kg</h1>
+                                    }
+                                    {
+                                        details.heightMin && details.heightMax ? 
+                                        <h1 className={s.info}>Height: {details.heightMin} cm - {details.heightMax} cm</h1>
+                                        :
+                                        <h1 className={s.info}>Height: {details.heightMin} cm</h1>
+                                    }
                                     {details.lifespanMax ?
                                     <h1 className={s.info}>Life span: {details.lifespanMin} - {details.lifespanMax} years</h1> 
-                                    : <h1>Life span: {details.lifespanMin}</h1>}
+                                    : <h1 className={s.info}>Life span: {details.lifespanMin}</h1>}
                                     <h1 className={s.info}>Temperaments: {details.temperament}</h1>
                                 </div>
                                 <div className={s.span}>
@@ -43,7 +58,7 @@ export default function Details(){
                                     </Link>
                                 </div>
                         </div>
-                    ) : <h1>Cargando</h1>
+                    )
                 }
                 </div>
         </div>
