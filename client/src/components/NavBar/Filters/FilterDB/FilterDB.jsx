@@ -15,6 +15,7 @@ export default function FilterDB({setPage, setInput}){
     return(
         <div>
             <select onChange={(e) =>handleFilterDB(e)}>
+                <option hidden value=''>Choose source</option>
                 <option value="all">All</option>
                 <option value="api">API</option>
                 <option value="database">DataBase</option>
