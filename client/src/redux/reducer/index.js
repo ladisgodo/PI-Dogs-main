@@ -1,7 +1,8 @@
 import { GET_DOGS, GET_TEMPERAMENTS,
          GET_DETAILS, CLEAR_PAGE, 
          GET_NAME_DOG, FILTER_NAME,
-         FILTER_WEIGHT, FILTER_TEMP } from "../actions/constants";
+         FILTER_WEIGHT, FILTER_TEMP,
+         FILTER_DB } from "../actions/constants";
 
 const initialState = {
     dogs: [],
@@ -60,6 +61,14 @@ const rootReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 dogs: filterTemp
+            }
+        case FILTER_DB:
+            const database = action.payload === 'database' ? 
+            state.allDogs.filter((d) => d.userCreated)
+            : state.allDogs.filter((d) => !d.userCreated)
+            return{
+                ...state,
+                dogs: action.payload === "all" ? state.allDogs : database
             }
         default: return state
     }
