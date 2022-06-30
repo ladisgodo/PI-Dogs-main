@@ -2,8 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 1rem;
     gap: 1rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .input{
