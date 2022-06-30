@@ -66,6 +66,30 @@
 }
 
 .btn{
-    margin-top: 10px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 11px;
+    line-height: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
     height: 30px;
-}
+    background-color: rgb(196, 196, 196);
+    color: black;
+    gap: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+.svg{
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #111;
+    stroke-width: 2;
+  }
