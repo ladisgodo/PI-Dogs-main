@@ -21,7 +21,7 @@ export default function Cards({dogs, page, perPage}){
                                 <h1 className={s.text}>Maximum weight:{d.weightMax}kg</h1>
                             </div>
                             <h1 className={s.temp}>Temperaments: {d.temperament}</h1>
-                            <Link to={`/dogs/${d.id}`}>
+                            <Link to={`/dogs/${d.id}`} style={{textDecoration: 'none'}}>
                                     <button className={s.btn}>View details
                                         <svg className={s.svg} width="13px" height="10px" viewBox="0 0 13 10">
                                             <path d="M1,5 L11,5"></path>
