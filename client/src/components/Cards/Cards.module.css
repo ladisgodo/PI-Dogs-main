@@ -1,11 +1,16 @@
 .container{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    /* display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr)); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
     font-size: 12px;
 }
 
 .cards{
-    padding: 7%;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .content{
@@ -19,6 +24,7 @@
     padding: 1rem;
     gap: 1%;
     transition: 0.3s;
+    width: 400px;
 }
 
 .content:hover {
@@ -33,9 +39,15 @@
 }
 
 .weight{
-    margin-top: 10%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.text{
+    margin-top: 25px;
     text-decoration: none;
-    font-size: 140%;
+    font-size: 20px;
 }
 
 .img{
@@ -47,6 +59,13 @@
 }
 
 .temp{
-    font-size: 20px;
+    width: 100%;
+    font-size: 15px;
     height: 45px;
+    margin-left: 10px;
+}
+
+.btn{
+    margin-top: 10px;
+    height: 30px;
 }
