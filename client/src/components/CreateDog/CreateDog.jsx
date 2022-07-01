@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector} from "react-redux";
 import { createDog, getTemperaments } from "../../redux/actions";
+import backgroundHome from '../Img/backgroundHome.webp';
+import s from './CreateDog.module.css'
 
 // Validacion de errores con regex
 
@@ -18,7 +20,7 @@ function validate(input) {
   if(!input.heightMax || !/^[1-9]\d*(\.\d+)?$/.test(input.heightMax)){
       errors.heightMax = '❌ Only numbers';
   }
-  if(input.heightMax <= input.heightMin){
+  if(parseInt(input.heightMax) <= parseInt(input.heightMin)){
       errors.heightMin = '❌ Min value cannot be greater than the max';
   }
   if(!input.weightMin || !/^[1-9]\d*(\.\d+)?$/.test(input.weightMin)){
@@ -27,7 +29,7 @@ function validate(input) {
   if(!input.weightMax || !/^[1-9]\d*(\.\d+)?$/.test(input.weightMax)){
       errors.weightMax = '❌ Only numbers';
   }
-  if(input.weightMax <= input.weightMin){
+  if(parseInt(input.weightMax) <= parseInt(input.weightMin)){
       errors.weightMin = '❌ Min value cannot be greater than the max';
   }
   if(!input.lifespanMin || !/^[1-9]\d*(\.\d+)?$/.test(input.lifespanMin)){
@@ -36,7 +38,7 @@ function validate(input) {
   if(!input.lifespanMax || !/^[1-9]\d*(\.\d+)?$/.test(input.lifespanMax)){
   errors.lifespanMax = '❌ Only numbers';
   }
-  if(input.lifespanMax <= input.lifespanMin){
+  if(parseInt(input.lifespanMax) <= parseInt(input.lifespanMin)){
       errors.lifespanMin = '❌ Min value cannot be greater than the max';
   }
   if (input.image && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(input.image) ){
@@ -134,83 +136,120 @@ function validate(input) {
 
     return(
         <div>
+            <img src={backgroundHome} alt='background-create' className={s.background}/>
             <Link to='/home'>
-                <button>Back to Home</button>
+                <button className={s.btnhome}>Back to Home</button>
             </Link>
-            <h1>FUNCIONA HIJA DEMIL PUTA</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <label>Name:</label>
-                    <input name="name" type='text' 
-                    placeholder="Enter the name..."  
-                    onChange={(e) => handleChange(e)} />
-                    {errors.name && <p>{errors.name}</p>}
-                </div>
-                <div>
-                    <label>Weight min:</label>
-                    <input name="weightMin" type='number' 
-                    min='1' max='100' placeholder="Min" 
-                    onChange={(e) => handleChange(e)}/>kg.
-                    <label>Weight max:</label>
-                    <input name="weightMax" type='number' 
-                    min='1' max='100' placeholder="Max"  
-                    onChange={(e) => handleChange(e)}/>kg.
-                    {errors.weightMin && <p>{errors.weightMin}</p>}
-                    {errors.weightMax && <p>{errors.weightMax}</p>}
-                </div>
-                <div>
-                    <label>Height min:</label>
-                    <input name="heightMin" type='number' 
-                    min='1' max='100' placeholder="Min"  
-                    onChange={(e) => handleChange(e)}/>cm.
-                    <label>Height max:</label>
-                    <input name="heightMax" type='number' 
-                    min='1' max='100' placeholder="Max"  
-                    onChange={(e) => handleChange(e)}/>cm.
-                    {errors.heightMin && <p>{errors.heightMin}</p>}
-                    {errors.heightMax && <p>{errors.heightMax}</p>}
-                </div>
-                <div>
-                    <label>Life time min:</label>
-                    <input name="lifespanMin" type='number' 
-                    min='1' max='100' placeholder="Min"  
-                    onChange={(e) => handleChange(e)}/>years.
-                    <label>Life time max:</label>
-                    <input name="lifespanMax" type='number' 
-                    min='1' max='100' placeholder="Max"  
-                    onChange={(e) => handleChange(e)}/>years.
-                    {errors.lifespanMin && (<p>{errors.lifespanMin}</p>)}
-                    {errors.lifespanMax && (<p>{errors.lifespanMax}</p>)}
-                </div>
-                <div>
-                    <label>Image:</label>
-                    <input type='imagen' name="image" 
-                    placeholder="URL"  
-                    onChange={(e) => handleChange(e)} />
-                    {errors.image && (<p>{errors.image}</p>)}
-                </div>
-                <div>
-                    <label>Temperaments:</label>
-                    <select onChange={(e) =>handleSelect(e)} >
-                        {
-                            allTemps.map((t) =>(
-                                <option key={t.id} value={t.name}>{t.name}</option>
-                            ))
-                        }
-                    </select>
-                    <div>
-                        <label>Selected:</label>
-                        {
-                            input.temperament.map((e) =>(
-                                <button type="button" onClick={() =>handleDelete(e)} key={e} >{e}</button>
-                            ))
-                        }
+        <div className={s.allContainer}>
+            <div className={s.container}>
+                <h1 className={s.title}>Create your own dog</h1>
+                <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
+                    <div className={s.divname}>
+                        <div className={s.name}>
+                            <label>Name:</label>
+                            <input name="name" type='text' 
+                            placeholder="Enter the name..."  
+                            onChange={(e) => handleChange(e)} />
+                        </div>
+                        {errors.name && <p>{errors.name}</p>}
                     </div>
-                </div>
-                <button type="submit" >Crear!</button>
-            </form>
+                    <div className={s.div}>
+                        <div className={s.div2}>
+                            <div className={s.text}>
+                                <label>Weight min: </label>
+                                <input name="weightMin" type='number' 
+                                min='1' max='100' placeholder="Min" 
+                                onChange={(e) => handleChange(e)}/> kg.
+                            </div>
+                            <div className={s.text}>
+                                <label>Weight max: </label>
+                                <input name="weightMax" type='number' 
+                                min='1' max='100' placeholder="Max"  
+                                onChange={(e) => handleChange(e)}/> kg.
+                            </div>
+                        </div>
+                        <div className={s.div2}>
+                            {errors.weightMin && <p>{errors.weightMin}</p>}
+                            {errors.weightMax && <p>{errors.weightMax}</p>}
+                        </div>
+                    </div>
+                    <div className={s.div}>
+                        <div className={s.div2}>
+                            <div className={s.text}>
+                                <label>Height min: </label>
+                                <input name="heightMin" type='number' 
+                                min='1' max='100' placeholder="Min"  
+                                onChange={(e) => handleChange(e)}/> cm.
+                            </div>
+                            <div>
+                                <label>Height max: </label>
+                                <input name="heightMax" type='number' 
+                                min='1' max='100' placeholder="Max"  
+                                onChange={(e) => handleChange(e)}/> cm.
+                            </div>
+                        </div>
+                        <div className={s.div2}>
+                            {errors.heightMin && <p>{errors.heightMin}</p>}
+                            {errors.heightMax && <p>{errors.heightMax}</p>}
+                        </div>
+                    </div>
+                    <div className={s.div}>
+                        <div className={s.div2}>
+                            <div className={s.text}>
+                                <label>Life time min: </label>
+                                <input name="lifespanMin" type='number' 
+                                min='1' max='100' placeholder="Min"  
+                                onChange={(e) => handleChange(e)}/> years.
+                            </div>
+                            <div>
+                                <label>Life time max: </label>
+                                <input name="lifespanMax" type='number' 
+                                min='1' max='100' placeholder="Max"  
+                                onChange={(e) => handleChange(e)}/> years.
+                            </div>
+                        </div>
+                        <div className={s.div2}>
+                            {errors.lifespanMin && (<p>{errors.lifespanMin}</p>)}
+                            {errors.lifespanMax && (<p>{errors.lifespanMax}</p>)}
+                        </div>
+                    </div>
+                    <div className={s.divname}>
+                        <div className={s.name}>
+                            <label>Image:</label>
+                            <input type='imagen' name="image" 
+                            placeholder="URL"  
+                            onChange={(e) => handleChange(e)} />
+                        </div>
+                        {errors.image && (<p>{errors.image}</p>)}
+                    </div>
+                    <div className={s.divname}>
+                        <div className={s.temps}>
+                            <label>Temperaments:</label>
+                            <select onChange={(e) =>handleSelect(e)} >
+                                {
+                                    allTemps.map((t) =>(
+                                        <option key={t.id} value={t.name}>{t.name}</option>
+                                    ))
+                                }
+                            </select>
+                            <div className={s.selected}>
+                                <label>Selected:</label>
+                                {
+                                    input.temperament.map((e) =>(
+                                        <button type="button" onClick={() =>handleDelete(e)} key={e} >{e}</button>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className={s.btnContainer}>
+                        <button className={s.btn} type="submit" >Crear!</button>
+                    </div>
+                </form>
+            </div>
             <div>
       </div>
+        </div>
         </div>
     )
 }
