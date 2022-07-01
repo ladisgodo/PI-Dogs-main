@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import s from './Pagination.module.css'
 
 export default function Pagination({page, setPage, max, input, setInput}){
