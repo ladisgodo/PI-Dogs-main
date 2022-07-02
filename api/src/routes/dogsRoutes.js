@@ -37,43 +37,6 @@ const getApiInfo = async () => {
     };
 };
 
-/* const getDataBaseInfo = async () => {
-    try{
-        const dogs = await Dog.findAll({
-            include: Temperament,
-        })
-        return dogs;
-    } catch(e){
-        console.log("Error en getDataBaseInfo", e);
-    };
-}; */
-
-/* const getDataBaseInfo = async () => {
-    try{
-        const dogs = await Dog.findAll({
-            include: Temperament,
-        })
-        const dbInfo = dogs.map((e) =>{
-            let temp = e.temperament.map((e) => e.name);
-            let tempResult = temp.join(", ");
-            return {
-                id: e.id,
-                name: e.name,
-                weightMin: e.weightMin,
-                weightMax: e.weightMax,
-                heightMin: e.heightMin,
-                heightMax: e.heightMax,
-                lifespanMin: e.lifespanMin,
-                lifespanMax: e.lifespanMax,
-                image: e.image ? e.image : "https://pbs.twimg.com/media/FMPSwVIXoAE4QSr?format=jpg&name=large",
-            };
-        });
-        return dbInfo;
-    } catch(e){
-        console.log("Error en getDataBaseInfo", e);
-    };
-}; */
-
 const getDataBaseInfo = async () => {
     try {
       const perros = await Dog.findAll({
@@ -88,7 +51,6 @@ const getDataBaseInfo = async () => {
         let newID = (e.id).match(regex);
         newID = newID.map((e) => parseInt(e));
         let finalID = newID.reduce((a, b) => a + b, 0)
-        // console.log("ACA ESTOY", e.temperament)
         return {
             id: finalID,
             name: e.name,
@@ -103,7 +65,6 @@ const getDataBaseInfo = async () => {
             userCreated: e.userCreated
         };
       });
-      //console.log(info)
       return info;
     } catch (error) {
       console.log("ERROR IN getDBInfo", error);
@@ -164,32 +125,6 @@ router.get('/dogs/:id', async (req, res, next) =>{
     };
 });
 
-/* router.get("/dogs/:id", async (req, res, next) => {
-    try {
-      let dogBd = [];
-      const id = req.params.id;
-      if (typeof id === "string" && id.length > 6) {
-        dogBd = await Dog.findAll({ where: { id: id }, include: Temperament });
-      }
-      if (dogBd.length) {
-        res.send(dogBd);
-      } else {
-        const dogsTotal = await getAllDogs();
-        //console.log(dogsTotal);
-        let dogId = dogsTotal.filter((el) => el.id == id);
-        // console.log("id",  dogId)
-        // console.log("db",  dogBd)
-        if (dogId) {
-          res.send(dogId);
-        } else {
-          res.send("Doggie not found!");
-        }
-      }
-    } catch (error) {
-      next(error);
-    }
-  }); */
-
 /*
  POST /dogs:
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
@@ -219,11 +154,6 @@ router.post("/post", async (req, res, next)=>{
             lifespanMax,
             image,
         });
-        console.log(temperament);
-        /* let temperamentsDB = []
-        for(let i=0; i<temperament.length; i++){
-
-        } */
         let temperamentsDB = await Temperament.findAll({
             where: { name: temperament },
           });
