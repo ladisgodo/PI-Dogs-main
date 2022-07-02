@@ -106,11 +106,11 @@ function validate(input) {
       
             input.name !== "" &&
             input.heightMin !== "" &&
-            input.heightMax > input.heightMin &&
+            parseInt(input.heightMax) > parseInt(input.heightMin) &&
             input.weightMin !== "" &&
-            input.weightMax > input.weightMin &&
+            parseInt(input.weightMax) > parseInt(input.weightMin) &&
             input.lifespanMin !== "" &&
-            input.lifespanMax > input.lifespanMin &&
+            parseInt(input.lifespanMax) > parseInt(input.lifespanMin) &&
             input.temperament.length !== 0
           ){
         dispatch(createDog(input));
