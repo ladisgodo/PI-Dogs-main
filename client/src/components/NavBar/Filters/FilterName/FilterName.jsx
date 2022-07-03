@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { filterName } from "../../../../redux/actions";
+import s from '../Filter.module.css'
 
 export default function FilterName({ setOrder }){
 
@@ -14,7 +15,7 @@ export default function FilterName({ setOrder }){
 
     return (
         <div>
-            <select onChange={(e) => handleName(e)}>
+            <select className={s.filter} onChange={(e) => handleName(e)}>
                 <option hidden value=''>Alphabetical order</option>
                 <option value='A-Z'>A-Z</option>
                 <option value='Z-A'>Z-A</option>

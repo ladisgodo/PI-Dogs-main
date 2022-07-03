@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterTemperaments } from "../../../../redux/actions";
+import s from '../Filter.module.css'
 
 export default function FilterTemp({setPage, setInput}) {
 
@@ -16,7 +17,7 @@ export default function FilterTemp({setPage, setInput}) {
 
     return(
         <div>
-            <select onChange={(e) =>handleTemp(e)}>
+            <select className={s.filter} onChange={(e) =>handleTemp(e)}>
                 <option hidden value=''>Choose temperaments</option>
                 <option value="all" >All</option>
                 {

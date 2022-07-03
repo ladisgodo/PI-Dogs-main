@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { filterWeight } from "../../../../redux/actions";
+import s from '../Filter.module.css'
 
 export default function FilterWeight({ setOrder }){
 
@@ -14,7 +15,7 @@ export default function FilterWeight({ setOrder }){
 
     return(
         <div>
-            <select onChange={(e) =>handleWeight(e)}>
+            <select className={s.filter} onChange={(e) =>handleWeight(e)}>
                 <option hidden value=''>Weight order</option>
                 <option value='Lower'>Lower</option>
                 <option value='Higher'>Higher</option>

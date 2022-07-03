@@ -21,7 +21,7 @@ export default function SearchBar({setPage, setInput}){
     function handleSubmit(e){
         e.preventDefault();
         if(!name){
-            alert('No estas buscando nada')
+            alert('Please, enter a name')
         } else{
             dispatch(getNameDogs(name));
             setName('');

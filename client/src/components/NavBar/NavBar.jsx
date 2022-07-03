@@ -25,9 +25,9 @@ export default function NavBar({setOrder, setPage, setInput}){
                 <FilterWeight setOrder={setOrder}/>
                 <FilterTemp setPage={setPage} setInput={setInput} />
                 <FilterDB setPage={setPage} setInput={setInput}/>
-                <button onClick={(e) => handleReset(e) }>Reset filters</button>
+                <button className={s.btn} onClick={(e) => handleReset(e) }>Reset filters</button>
                 <Link to='/create'>
-                    <button>Create dog</button>
+                    <button className={s.btn}>Create dog</button>
                 </Link>
         </div>
     )

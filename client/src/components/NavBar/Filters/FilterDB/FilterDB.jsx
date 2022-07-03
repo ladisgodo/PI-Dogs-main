@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { filterDB } from "../../../../redux/actions";
+import s from '../Filter.module.css'
 
 export default function FilterDB({setPage, setInput}){
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function FilterDB({setPage, setInput}){
 
     return(
         <div>
-            <select onChange={(e) =>handleFilterDB(e)}>
+            <select className={s.filter} onChange={(e) =>handleFilterDB(e)}>
                 <option hidden value=''>Choose source</option>
                 <option value="all">All</option>
                 <option value="api">API</option>
