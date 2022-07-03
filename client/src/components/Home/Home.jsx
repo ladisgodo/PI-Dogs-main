@@ -9,6 +9,7 @@ import Loading from "./Loading/Loading";
 import SearchBar from "../SearchBar/SearchBar";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
+import FinalBar from "../FinalBar/FinalBar";
 
 export default function Home() {
 
@@ -61,6 +62,7 @@ export default function Home() {
                                             </div>
                                         </div>
                                 }
+                                <FinalBar/>
                             </div>
                         </div>
                 }
