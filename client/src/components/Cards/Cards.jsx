@@ -17,8 +17,15 @@ export default function Cards({dogs, page, perPage}){
                             <h1 className={s.name}>{d.name}</h1>
                             <img src={d.image} alt={d.name} className={s.img} />
                             <div className={s.weight}>
-                                <h1 className={s.text}><u>Minimum weight:</u> {d.weightMin}kg</h1>
-                                <h1 className={s.text}><u>Maximum weight:</u> {d.weightMax}kg</h1>
+                                {
+                                    !d.weightMax ? <h1 className={s.text}><u>Minimum weight:</u> {d.weightMin}kg</h1>
+                                    : d.weightMin == 'NaN' ? <h1 className={s.text}><u>Maximum weight:</u> {d.weightMax}kg</h1>
+                                    :   <div className={s.weight}>
+                                            <h1 className={s.text}><u>Minimum weight:</u> {d.weightMin}kg</h1>
+                                            <h1 className={s.text}><u>Maximum weight:</u> {d.weightMax}kg</h1>
+                                        </div>
+                                    
+                                }
                             </div>
                             <h1 className={s.temp}><u>Temperaments:</u> {d.temperament}</h1>
                             <Link to={`/dogs/${d.id}`} style={{textDecoration: 'none'}}>

@@ -46,8 +46,16 @@ const rootReducer = (state = initialState, action) =>{
             }
         case FILTER_WEIGHT:
             const filterWeight = action.payload === 'Higher' ?
-            state.dogs.sort((dog1, dog2) => dog2.weightMin - dog1.weightMin) :
-            state.dogs.sort((dog1, dog2) => dog1.weightMin - dog2.weightMin) ;
+            state.dogs.sort((dog1, dog2) => {
+                if(dog1.name === "Olde English Bulldogge") dog1.weightMin = 27;
+                else if(dog2.name === "Olde English Bulldogge") dog2.weightMin = 27;
+                return (parseInt(dog2.weightMin)) - (parseInt(dog1.weightMin))
+            }) :
+            state.dogs.sort((dog1, dog2) => {
+                if(dog1.name === "Olde English Bulldogge") dog1.weightMin = 27;
+                else if(dog2.name === "Olde English Bulldogge") dog2.weightMin = 27;
+                return (parseInt(dog1.weightMin)) - (parseInt(dog2.weightMin))
+            });
             return{
                 ...state,
                 dogs: filterWeight

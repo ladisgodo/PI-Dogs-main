@@ -104,7 +104,6 @@ function validate(input) {
     function handleSubmit(e){
         e.preventDefault();
         if (
-      
             input.name !== "" &&
             input.heightMin !== "" &&
             parseInt(input.heightMax) > parseInt(input.heightMin) &&
