@@ -84,7 +84,7 @@ function validate(input) {
 
     function handleSelect(e){
         if(input.temperament.includes(e.target.value)) alert('Temperament has already been entered')
-        else if(input.temperament.length == 4) alert('You cannot enter more than 4 temperaments')
+        else if(input.temperament.length === 4) alert('You cannot enter more than 4 temperaments')
         else{
             setInput({
               ...input,

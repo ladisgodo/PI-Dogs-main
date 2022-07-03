@@ -19,7 +19,7 @@ export default function Cards({dogs, page, perPage}){
                             <div className={s.weight}>
                                 {
                                     !d.weightMax ? <h1 className={s.text}><u>Minimum weight:</u> {d.weightMin}kg</h1>
-                                    : d.weightMin == 'NaN' ? <h1 className={s.text}><u>Maximum weight:</u> {d.weightMax}kg</h1>
+                                    : d.weightMin === 'NaN' ? <h1 className={s.text}><u>Maximum weight:</u> {d.weightMax}kg</h1>
                                     :   <div className={s.weight}>
                                             <h1 className={s.text}><u>Minimum weight:</u> {d.weightMin}kg</h1>
                                             <h1 className={s.text}><u>Maximum weight:</u> {d.weightMax}kg</h1>
