@@ -31,14 +31,16 @@ export default function SearchBar({setPage, setInput}){
     }
 
     return(
-        <div className={s.container} >
-            <input type='text' placeholder={'Search a dog...'}
-             value={name} onKeyPress={handleEnter} 
-             onChange={(e) => handleSearch(e)}
-             className={s.input}/>
-            <button type='Submit' 
-            onClick={(e) =>handleSubmit(e)}
-            className={s.btn}>Search</button>
+        <div className={s.container}>
+            <div className={s.container2}>
+                <input type='text' placeholder={'Search a dog...'}
+                value={name} onKeyPress={handleEnter} 
+                onChange={(e) => handleSearch(e)}
+                className={s.input}/>
+                <button type='Submit' 
+                onClick={(e) =>handleSubmit(e)}
+                className={s.btn}>Search</button>
+            </div>
         </div>
     )
 }

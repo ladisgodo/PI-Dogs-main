@@ -105,13 +105,15 @@ function validate(input) {
         e.preventDefault();
         if (
             input.name !== "" &&
+            /^[A-Za-z\s]+$/g.test(input.name) &&
             input.heightMin !== "" &&
             parseInt(input.heightMax) > parseInt(input.heightMin) &&
             input.weightMin !== "" &&
             parseInt(input.weightMax) > parseInt(input.weightMin) &&
             input.lifespanMin !== "" &&
             parseInt(input.lifespanMax) > parseInt(input.lifespanMin) &&
-            input.temperament.length !== 0
+            input.temperament.length !== 0 && 
+            /[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(input.image)
           ){
         dispatch(createDog(input));
         setInput({
