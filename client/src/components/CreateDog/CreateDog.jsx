@@ -11,8 +11,8 @@ function validate(input) {
     var errors = {};
   
   
-    if (!input.name || !/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.name)){
-      errors.name = "❌ The first letter must be uppercase";
+    if (!input.name || !/^[A-Za-z\s]+$/g.test(input.name)){
+      errors.name = "❌ Only letters!";
   }
   if(!input.heightMin || !/^[1-9]\d*(\.\d+)?$/.test(input.heightMin)){
       errors.heightMin = '❌ Only numbers';
@@ -147,7 +147,7 @@ function validate(input) {
                 <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
                     <div className={s.divname}>
                         <div className={s.name}>
-                            <label>Name:</label>
+                            <label><u>Name:</u></label>
                             <input name="name" type='text' 
                             placeholder="Enter the name..."  
                             onChange={(e) => handleChange(e)}
@@ -158,14 +158,14 @@ function validate(input) {
                     <div className={s.div}>
                         <div className={s.div2}>
                             <div className={s.text}>
-                                <label>Weight min: </label>
+                                <label><u>Weight min:</u> </label>
                                 <input name="weightMin" type='number' 
                                 min='1' max='100' placeholder="Min" 
                                 onChange={(e) => handleChange(e)}
                                 style={{height: '24px'}}/> kg.
                             </div>
                             <div className={s.text}>
-                                <label>Weight max: </label>
+                                <label><u>Weight max:</u> </label>
                                 <input name="weightMax" type='number' 
                                 min='1' max='100' placeholder="Max"  
                                 onChange={(e) => handleChange(e)}
@@ -180,14 +180,14 @@ function validate(input) {
                     <div className={s.div}>
                         <div className={s.div2}>
                             <div className={s.text}>
-                                <label>Height min: </label>
+                                <label><u>Height min:</u> </label>
                                 <input name="heightMin" type='number' 
                                 min='1' max='100' placeholder="Min"  
                                 onChange={(e) => handleChange(e)}
                                 style={{height: '24px'}}/> cm.
                             </div>
                             <div>
-                                <label>Height max: </label>
+                                <label><u>Height max:</u> </label>
                                 <input name="heightMax" type='number' 
                                 min='1' max='100' placeholder="Max"  
                                 onChange={(e) => handleChange(e)}
@@ -202,14 +202,14 @@ function validate(input) {
                     <div className={s.div}>
                         <div className={s.div2}>
                             <div className={s.text}>
-                                <label>Life time min: </label>
+                                <label><u>Life time min:</u> </label>
                                 <input name="lifespanMin" type='number' 
                                 min='1' max='100' placeholder="Min"  
                                 onChange={(e) => handleChange(e)}
                                 style={{height: '24px'}}/> years.
                             </div>
                             <div>
-                                <label>Life time max: </label>
+                                <label><u>Life time max:</u> </label>
                                 <input name="lifespanMax" type='number' 
                                 min='1' max='100' placeholder="Max"  
                                 onChange={(e) => handleChange(e)}
@@ -223,7 +223,7 @@ function validate(input) {
                     </div>
                     <div className={s.divname}>
                         <div className={s.name}>
-                            <label>Image:</label>
+                            <label><u>Image:</u> </label>
                             <input type='imagen' name="image" 
                             placeholder="URL"  
                             onChange={(e) => handleChange(e)}
@@ -233,7 +233,7 @@ function validate(input) {
                     </div>
                     <div className={s.divname}>
                         <div className={s.temps}>
-                            <label>Temperaments:</label>
+                            <label><u>Temperaments:</u> </label>
                             <select onChange={(e) =>handleSelect(e)} style={{height: '25px'}}>
                                 {
                                     allTemps.map((t) =>(
@@ -242,7 +242,7 @@ function validate(input) {
                                 }
                             </select>
                             <div className={s.selected}>
-                                <label>Selected:</label>
+                                <label><u>Selected:</u> </label>
                                 {
                                     input.temperament.map((e) =>(
                                         <button className={s.btndelete} type="button" onClick={() =>handleDelete(e)} key={e} >{e}</button>
