@@ -235,7 +235,7 @@ function validate(input) {
                     <div className={s.divname}>
                         <div className={s.temps}>
                             <label><u>Temperaments:</u> </label>
-                            <select onChange={(e) =>handleSelect(e)} style={{height: '25px'}}>
+                            <select onChange={(e) =>handleSelect(e)} style={{height: '25px', outline: 'none'}}>
                                 {
                                     allTemps.map((t) =>(
                                         <option key={t.id} value={t.name}>{t.name}</option>

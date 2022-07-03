@@ -16,7 +16,20 @@
 
 .btnhome{
     position: relative;
-    margin: 30px;
+    margin: 20px;
+    height: 40px;
+    padding: 0px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: rgb(228, 228, 228, 0.8);
+    border-radius: 20px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.btnhome:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
 }
 
 .container {
@@ -122,4 +135,19 @@
 
 .btndelete{
     height: 40px;
+    padding: 0px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: rgb(228, 228, 228, 0.8);
+    border-radius: 20px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.btndelete:hover{
+    background-color: rgb(219, 25, 25, 0.8);
+}
+
+input{
+    outline: none;
 }
