@@ -83,7 +83,8 @@ function validate(input) {
     };
 
     function handleSelect(e){
-        if(input.temperament.includes(e.target.value)) alert('Ya existe el temperamento')
+        if(input.temperament.includes(e.target.value)) alert('Temperament has already been entered')
+        else if(input.temperament.length == 4) alert('You cannot enter more than 4 temperaments')
         else{
             setInput({
               ...input,
@@ -126,7 +127,7 @@ function validate(input) {
         });
         history.push('/home');
         } else {
-        alert('Faltan cosas pa');
+        alert('Please, fill in the fields correctly');
         }
     }
 
@@ -149,7 +150,8 @@ function validate(input) {
                             <label>Name:</label>
                             <input name="name" type='text' 
                             placeholder="Enter the name..."  
-                            onChange={(e) => handleChange(e)} />
+                            onChange={(e) => handleChange(e)}
+                            style={{height: '24px'}}/>
                         </div>
                         {errors.name && <p>{errors.name}</p>}
                     </div>
@@ -159,13 +161,15 @@ function validate(input) {
                                 <label>Weight min: </label>
                                 <input name="weightMin" type='number' 
                                 min='1' max='100' placeholder="Min" 
-                                onChange={(e) => handleChange(e)}/> kg.
+                                onChange={(e) => handleChange(e)}
+                                style={{height: '24px'}}/> kg.
                             </div>
                             <div className={s.text}>
                                 <label>Weight max: </label>
                                 <input name="weightMax" type='number' 
                                 min='1' max='100' placeholder="Max"  
-                                onChange={(e) => handleChange(e)}/> kg.
+                                onChange={(e) => handleChange(e)}
+                                style={{height: '24px'}}/> kg.
                             </div>
                         </div>
                         <div className={s.div2}>
@@ -179,13 +183,15 @@ function validate(input) {
                                 <label>Height min: </label>
                                 <input name="heightMin" type='number' 
                                 min='1' max='100' placeholder="Min"  
-                                onChange={(e) => handleChange(e)}/> cm.
+                                onChange={(e) => handleChange(e)}
+                                style={{height: '24px'}}/> cm.
                             </div>
                             <div>
                                 <label>Height max: </label>
                                 <input name="heightMax" type='number' 
                                 min='1' max='100' placeholder="Max"  
-                                onChange={(e) => handleChange(e)}/> cm.
+                                onChange={(e) => handleChange(e)}
+                                style={{height: '24px'}}/> cm.
                             </div>
                         </div>
                         <div className={s.div2}>
@@ -199,13 +205,15 @@ function validate(input) {
                                 <label>Life time min: </label>
                                 <input name="lifespanMin" type='number' 
                                 min='1' max='100' placeholder="Min"  
-                                onChange={(e) => handleChange(e)}/> years.
+                                onChange={(e) => handleChange(e)}
+                                style={{height: '24px'}}/> years.
                             </div>
                             <div>
                                 <label>Life time max: </label>
                                 <input name="lifespanMax" type='number' 
                                 min='1' max='100' placeholder="Max"  
-                                onChange={(e) => handleChange(e)}/> years.
+                                onChange={(e) => handleChange(e)}
+                                style={{height: '24px'}}/> years.
                             </div>
                         </div>
                         <div className={s.div2}>
@@ -218,14 +226,15 @@ function validate(input) {
                             <label>Image:</label>
                             <input type='imagen' name="image" 
                             placeholder="URL"  
-                            onChange={(e) => handleChange(e)} />
+                            onChange={(e) => handleChange(e)}
+                            style={{height: '24px'}}/>
                         </div>
                         {errors.image && (<p>{errors.image}</p>)}
                     </div>
                     <div className={s.divname}>
                         <div className={s.temps}>
                             <label>Temperaments:</label>
-                            <select onChange={(e) =>handleSelect(e)} >
+                            <select onChange={(e) =>handleSelect(e)} style={{height: '25px'}}>
                                 {
                                     allTemps.map((t) =>(
                                         <option key={t.id} value={t.name}>{t.name}</option>
@@ -236,7 +245,7 @@ function validate(input) {
                                 <label>Selected:</label>
                                 {
                                     input.temperament.map((e) =>(
-                                        <button type="button" onClick={() =>handleDelete(e)} key={e} >{e}</button>
+                                        <button className={s.btndelete} type="button" onClick={() =>handleDelete(e)} key={e} >{e}</button>
                                     ))
                                 }
                             </div>

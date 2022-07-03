@@ -44,13 +44,25 @@ export default function Home() {
                             <div className={s.content}>
                                 <NavBar className={s.navbar} setOrder={setOrder} setPage={setPage} setInput={setInput} />
                                 <SearchBar setPage={setPage} setInput={setInput}/>
-                                {max >=1 && <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />}
-                                <div>
-                                    <Cards dogs={dogs} page={page} perPage={perPage}/>
-                                </div>
-                                {max >=1 && <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />}
+                                {
+                                    dogs.length > 0 ? (
+                                        <div>
+                                            <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} />
+                                            <div>
+                                                <Cards dogs={dogs} page={page} perPage={perPage}/>
+                                            </div>
+                                            <Pagination page={page} setPage={setPage} max={max} input={input} setInput={setInput} /> 
+                                        </div>
+                                    ) : <div className={s.error}>
+                                            <div className={s.error2}>
+                                                <h1 className={s.notfound}>404 NOT FOUND</h1>
+                                                <h1 className={s.text1}>Ooops, dog not found</h1>
+                                                <p className={s.text2}>Sorry, but the requested dog is not found. Please press <b>"Reset filters"</b> button.</p>
+                                            </div>
+                                        </div>
+                                }
                             </div>
-                        </div> 
+                        </div>
                 }
         </div>
     )

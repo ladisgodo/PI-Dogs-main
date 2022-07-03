@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&display=swap');
+
+body{
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
 .container{
-    /* display: grid;
-    grid-template-columns: repeat(3, minmax(200px, 1fr)); */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -36,9 +40,13 @@
   }
 
 .name{
-    font-size: 200%;
-    height: 20px;
-    margin-top: 0px;
+    font-size: 40px;
+    font-weight: 500;
+    height: 25px;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 2px;
+    margin-left: 5px;
+    margin-top: -10px;
 }
 
 .weight{
@@ -51,6 +59,7 @@
     margin-top: 25px;
     text-decoration: none;
     font-size: 20px;
+    font-weight: 500;
 }
 
 .img{
@@ -64,9 +73,10 @@
 
 .temp{
     width: 100%;
-    font-size: 15px;
+    font-size: 20px;
     height: 45px;
     margin-left: 10px;
+    font-weight: 500;
 }
 
 .btn{
@@ -86,6 +96,7 @@
     cursor: pointer;
     text-decoration: none;
     box-shadow: none;
+    margin-top: 20px;
   }
 
 .svg{

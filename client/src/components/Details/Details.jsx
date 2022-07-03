@@ -39,20 +39,20 @@ export default function Details(){
                                     <div className={s.text}>
                                         {
                                             details.weightMin && details.weightMax ? 
-                                            <h1 className={s.info}>Weight: {details.weightMin} kg - {details.weightMax} kg</h1>
+                                            <h1 className={s.info}><u>Weight:</u> {details.weightMin} kg - {details.weightMax} kg</h1>
                                             :
-                                            <h1 className={s.info}>Weight: {details.weightMin} kg</h1>
+                                            <h1 className={s.info}><u>Weight:</u> {details.weightMin} kg</h1>
                                         }
                                         {
                                             details.heightMin && details.heightMax ? 
-                                            <h1 className={s.info}>Height: {details.heightMin} cm - {details.heightMax} cm</h1>
+                                            <h1 className={s.info}><u>Height:</u> {details.heightMin} cm - {details.heightMax} cm</h1>
                                             :
-                                            <h1 className={s.info}>Height: {details.heightMin} cm</h1>
+                                            <h1 className={s.info}><u>Height:</u> {details.heightMin} cm</h1>
                                         }
                                         {details.lifespanMax ?
-                                        <h1 className={s.info}>Life span: {details.lifespanMin} - {details.lifespanMax} years</h1> 
-                                        : <h1 className={s.info}>Life span: {details.lifespanMin}</h1>}
-                                        <h1 className={s.info}>Temperaments: {details.temperament}</h1>
+                                        <h1 className={s.info}><u>Life span:</u> {details.lifespanMin} - {details.lifespanMax} years</h1> 
+                                        : <h1 className={s.info}><u>Life span:</u> {details.lifespanMin}</h1>}
+                                        <h1 className={s.info}><u>Temperaments:</u> {details.temperament}</h1>
                                     </div>
                                     <div className={s.span}>
                                         <img className={s.img} src={details.image} alt={details.name}/>

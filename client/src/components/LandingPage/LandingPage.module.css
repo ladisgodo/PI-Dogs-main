@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&display=swap');
+
 .container{
     display: flex;
     justify-content: center;
@@ -18,9 +20,10 @@
     display: flex;
     position: absolute;
     color: black;
-    top: 25%;
-    left: 6%;
-    font-size: 45px;
+    top: 20%;
+    left: 5%;
+    font-size: 60px;
+    font-family: 'Barlow Condensed', sans-serif;
 }
 
 .btn{
