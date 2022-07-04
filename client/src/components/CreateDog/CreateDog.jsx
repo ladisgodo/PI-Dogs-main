@@ -253,7 +253,7 @@ function validate(input) {
                         </div>
                     </div>
                     <div className={s.btnContainer}>
-                        <button className={s.btn} type="submit" >Crear!</button>
+                        <button className={s.btn} type="submit" >Create!</button>
                     </div>
                 </form>
             </div>
