@@ -113,7 +113,7 @@ function validate(input) {
             input.lifespanMin !== "" &&
             parseInt(input.lifespanMax) > parseInt(input.lifespanMin) &&
             input.temperament.length !== 0 && 
-            /[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(input.image)
+            (/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(input.image) || input.image === '')
           ){
         dispatch(createDog(input));
         setInput({
