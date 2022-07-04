@@ -1,13 +1,14 @@
 .container{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 40px;
+    justify-content: center;
+    align-items: flex-end;
     background-color: rgba(100, 100, 100, 0.85);
     border-top: 2px solid black;
-    margin-top: 7.5px;
+    margin-top: 10px;
+    height: 31px;
 }
 
 .text{
     font-size: 22px;
+    margin: 0px;
 }
