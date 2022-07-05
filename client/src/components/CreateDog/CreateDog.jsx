@@ -90,7 +90,6 @@ function validate(input) {
               ...input,
               temperament: [...input.temperament, e.target.value],
             });
-            console.log(input.temperament);
         }
     }
 
